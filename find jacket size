@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+double convertHeight(double height){
+    return height * 3.26084;
+}
+
+int convertWeight(int weight){
+    return weight * 2.20462;
+}
+
+void jacketSize(double height, int weight){
+
+    if ((height >= 5.2 && height <= 5.6) && (weight >= 50 && weight <= 55)){
+        cout << "your size is small"<< endl;
+    }
+    else if ((height >= 5.7 && height <= 5.8) && (weight >= 56 && weight <= 65)){
+        cout << "your size is medium" << endl;
+    }
+    else if ((height >= 5.9 && height <= 6.2) && (weight >= 65 && weight <= 75)){
+        cout << "your size is large" << endl;
+    }
+    else if ((height >= 6.3 && height <= 6.5) && (weight >= 75 && weight <= 85)){
+        cout << "your size is extra large" << endl;
+    }
+    else if (height > 6.5 && weight >= 86 && weight <= 95){
+        cout << "your size is extra large 2"<<endl;
+    }
+    else{
+        cout << "I am not sure about your size, but i recommend that you take a larger size" <<endl;
+    }
+}
+
+int main() {
+    double heightValue;
+    int weightValue;
+
+    cout << "What is your height in meters? " << endl;
+    cin >> heightValue;
+
+    cout << "What is your weight in kilograms? " << endl;
+    cin >> weightValue;
+
+    cout << "height in meters is "<<heightValue <<endl;
+    cout<<"your weight in kilograms is "<<weightValue<<endl;
+
+    cout << "----------------------------------------------" << endl;
+
+    cout << "your height in feet is " << convertHeight(heightValue) << "ft" << endl;
+    cout << "your weight in pounds is " << convertWeight(weightValue) << "lb" << endl;
+
+    jacketSize(convertHeight(heightValue), convertWeight(weightValue));
+
+    return 0;
+}
