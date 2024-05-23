@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Product {
+private:
+    int ID;
+    string name;
+    double cost, price, VAT, VATAmount, profit, markup;
+
+public:
+    Product() {
+        ID = 0;
+        name = "";
+        cost = 0.0;
+        price = 0.0;
+        VAT = 0.0;
+        VATAmount = 0.0;
+        profit = 0.0;
+        markup = 0.0;
+    }
+    Product(
+        int id,
+        string prodName,
+        double prodCost,
+        double prodPrice,
+        double prodVAT
+    ) {
+        ID = id;
+        name = prodName;
+        cost = prodCost;
+        price = prodPrice;
+        VAT = prodVAT;
+    }
+    void setID(int id) { ID = id; }
+    int getID() const { return ID; }
+
+    void setName(string prodName) { name = prodName; }
+    string getName() const { return name; }
+
+    void setCost(double prodCost) { cost = prodCost; }
+    double getCost() const { return cost; }
+
+    void setPrice(double prodPrice) { price = prodPrice; }
+    double getPrice() const { return price; }
+
+    void setVAT(double prodVAT) { VAT = prodVAT; }
+    double getVAT() const { return VAT; }
+
+    void calculateVATAmount() {
+        VATAmount = VAT * cost;
+    }
+
+    void calculateProfit() {
+        profit = price - (cost - VATAmount);
+    }
+
+    void calculateMarkup() {
+        markup = (profit / cost) * 100;
+    }
+
+    void printProductDetails() {
+        cout << "product ID is " << ID << endl;
+        cout << "product name is " << name << endl;
+        cout << "product cost is " << cost << endl;
+        cout << "product price is " << price << endl;
+        cout << "product VAT amount is " << VATAmount << endl;
+        cout << "product profit is " << profit << endl;
+        cout << "product markup is " << markup <<"%"<<endl;
+    }
+};
+
+int main() {
+    Product obj(2, "BMW", 780654.2, 1005020.0, 0.05);
+    obj.calculateVATAmount();
+    obj.calculateProfit();
+    obj.calculateMarkup();
+    obj.printProductDetails();
+    return 0;
+}
