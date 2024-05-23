@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+#include <string>
+#include <cctype>
+
+int main() {
+    int accountNumber;
+    char serviceCode;
+    int amountDue;
+    string typeOfService;
+
+    cout <<"enter account number: "<<endl;
+    cin>>accountNumber;
+
+    cout << "enter a service code (r or R for regular service or P or p for premium service): ";
+    cin >> serviceCode;
+
+    serviceCode = tolower(serviceCode);
+
+    if (serviceCode == 'R' || serviceCode == 'r'){
+
+        typeOfService = "Regular";
+        int numOfMinutes;
+
+        cout <<"enter number of minutes used: \n";
+        cin >> numOfMinutes;
+
+        if (numOfMinutes <= 50){
+            amountDue = 100;
+        } 
+        else {
+            amountDue = 100 + (numOfMinutes - 50) * 2;
+        }
+        cout << "--------------------------------------------" << endl;
+        
+        cout << "\naccount number: " << accountNumber;
+        cout << "\ntype of service: " << typeOfService;
+        cout << "\nnumber of minutes used: " << numOfMinutes << " minutes";
+        cout << "\namount due R" << amountDue;
+    }
+
+    else if (serviceCode == 'P' || serviceCode == 'p') {
+        typeOfService = "Premium";
+        int numOfMinutesDay, numOfMinutesNight;
+
+        cout <<"enter number of minutes used during a day: \n";
+        cin >> numOfMinutesDay;
+        
+        cout << "enter number of minutes used during a night:\n";
+        cin >> numOfMinutesNight;
+
+        if (numOfMinutesNight <= 100 && numOfMinutesDay <= 75){
+            amountDue = 250;
+        }else if (numOfMinutesNight > 100 && numOfMinutesDay > 75){
+            amountDue = ((numOfMinutesDay - 75)) + ((numOfMinutesNight - 100) * 0.5) + 250;
+        }else if (numOfMinutesNight > 100 &&  numOfMinutesDay < 75){
+            amountDue = 250 + (numOfMinutesNight - 100) * 0.5;
+        }else if (numOfMinutesDay > 75 && numOfMinutesNight < 100){
+            amountDue = 250 + (numOfMinutesDay - 75);
+        }
+        cout << "--------------------------------------------" << endl;
+        cout << "\naccount number: " << accountNumber;
+        cout << "\nnumber of minutes used during a day: " << numOfMinutesDay << " minutes";
+        cout << "\nnumber of minutes used during a night: " << numOfMinutesNight << " minutes";
+        cout << "\namount due is R" << amountDue;
+    }
+
+    else{
+        cout << "invalid service code";
+    }
+    return 0;
+}
